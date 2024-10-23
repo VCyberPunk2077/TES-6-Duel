@@ -1,5 +1,3 @@
-import java.lang.Math.round
-
 class Robot(health:Int,
             power:Int,
             var battery:Int

@@ -1,14 +1,14 @@
 import java.util.*
 
 fun main() {
-    var input = Scanner(System.`in`)
+    val input = Scanner(System.`in`)
     println("Start GAME")
     println("Введите здоровье, силу и ману мага")
-    var wizard = Wizard(input.nextInt(), input.nextInt(), input.nextInt())
+    val wizard = Wizard(input.nextInt(), input.nextInt(), input.nextInt())
     println("Введите здоровье, силу и заряд робота")
-    var robot = Robot(input.nextInt(), input.nextInt(), input.nextInt())
+    val robot = Robot(input.nextInt(), input.nextInt(), input.nextInt())
     println("Введите здоровье, силу и показатели брони рыцаря")
-    var knight = Knight(input.nextInt(), input.nextInt(), input.nextInt())
+    val knight = Knight(input.nextInt(), input.nextInt(), input.nextInt())
 
     println("Стартовые характеристики героев:")
     println(wizard)
@@ -16,12 +16,11 @@ fun main() {
     println(knight)
 
     while ((wizard.health > 0) and (robot.health > 0) and (knight.health > 0)) {
-        var game: Int = 0
-        var human1: String
+        var game: Int
         var action: String
         var human2: String
         println("Введите номер песонажа, который выполняет действие(1.wizard, 2.robot, 3.knight)")
-        human1 = readLine().toString()
+        val human1: String = readlnOrNull().toString()
         when (human1) {
             "1" -> {
                 println(
@@ -30,11 +29,11 @@ fun main() {
                             "2.heal" +
                             "3.manaRecovery"
                 )
-                action = readLine().toString()
+                action = readlnOrNull().toString()
                 when (action) {
                     "1" -> {
                         println("Введите номер персонажа, которого атакуете(1.robot, 2.knight)")
-                        human2 = readLine().toString()
+                        human2 = readlnOrNull().toString()
                         when (human2) {
                             "1" -> {
                                 println(wizard.attack(wizard, robot))
@@ -63,11 +62,11 @@ fun main() {
                             "2.heal" +
                             "3.recharging"
                 )
-                action = readLine().toString()
+                action = readlnOrNull().toString()
                 when (action) {
                     "1" -> {
                         println("Введите номер персонажа, которого атакуете(1.wizard, 2.knight)")
-                        human2 = readLine().toString()
+                        human2 = readlnOrNull().toString()
                         when (human2) {
                             "1" -> {
                                 println(robot.attack(robot, wizard))
@@ -96,11 +95,11 @@ fun main() {
                             "2.heal" +
                             "3.armorRecovery"
                 )
-                action = readLine().toString()
+                action = readlnOrNull().toString()
                 when (action) {
                     "1" -> {
                         println("Введите номер персонажа, которого атакуете(1.wizard, 2.robot)")
-                        human2 = readLine().toString()
+                        human2 = readlnOrNull().toString()
                         when (human2) {
                             "1" -> {
                                 println(knight.attack(knight, wizard))
@@ -130,7 +129,7 @@ fun main() {
         println()
         if ((wizard.health > 0) and (robot.health > 0) and (knight.health > 0)) {
             println("Хотите продолжить игру дальше?(1 - да, 0 - нет)")
-            game = readLine()!!.toInt()
+            game = readln().toInt()
             if (game == 0)
                 break
         } else
@@ -139,7 +138,7 @@ fun main() {
     println()
     println("The END")
     println("Итоговый рейтинг персонажей:")
-    var customComporator = comparator()
+    val customComporator = comparator()
     val arrayHuman = arrayOf(wizard,robot,knight)
     Arrays.sort(arrayHuman,customComporator)
     println(arrayHuman.contentToString())
